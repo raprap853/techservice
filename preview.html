@@ -5,7 +5,6 @@
 <title>Microsoft Office Licensed Activated</title>
 
 <style>
-/* --- General Styles --- */
 body {
     display: flex;
     flex-direction: column;
@@ -16,11 +15,8 @@ body {
     color: #333;
 }
 
-#store {
-    flex: 1;
-}
+#store { flex: 1; }
 
-/* --- Header --- */
 header {
     background: #0078D7;
     color: white;
@@ -29,7 +25,6 @@ header {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* --- Hero Section --- */
 .hero {
     text-align: center;
     padding: 40px 15px;
@@ -39,17 +34,8 @@ header {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.hero img {
-    width: 100px;
-    margin-bottom: 15px;
-}
-
-.price {
-    font-size: 28px;
-    color: #28a745;
-    margin: 10px 0;
-    font-weight: bold;
-}
+.hero img { width: 100px; margin-bottom: 15px; }
+.price { font-size: 28px; color: #28a745; margin: 10px 0; font-weight: bold; }
 
 .btn {
     background: #0078D7;
@@ -63,109 +49,29 @@ header {
     cursor: pointer;
     transition: background 0.3s ease;
 }
+.btn:hover { background: #005ea6; }
 
-.btn:hover {
-    background: #005ea6;
-}
+.section { margin: 20px; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-/* --- Sections --- */
-.section {
-    margin: 20px;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; }
+.feature { background: #f0f4f8; padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; }
 
-/* --- Features Grid --- */
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
-}
+input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
+.payment-box { background: #e3f2fd; padding: 15px; border-radius: 5px; margin-top: 10px; }
 
-.feature {
-    background: #f0f4f8;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: 600;
-}
+.checkout-dashboard { display: none; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+td { cursor: text; }
 
-/* --- Form Inputs --- */
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+.policies { background: #f0f0f0; color: #333; font-size: 14px; padding: 20px; border-radius: 10px; line-height: 1.6; }
+.policies h3 { color: #0078D7; }
 
-/* --- Payment Box --- */
-.payment-box {
-    background: #e3f2fd;
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 10px;
-}
+footer { background: #0078D7; color: white; text-align: center; padding: 15px; font-weight: bold; }
 
-/* --- Dashboard Tables --- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-td {
-    cursor: text;
-}
-
-.checkout-dashboard {
-    display: none;
-}
-
-.buyer-table {
-    display: none;
-}
-
-/* --- Policies Section --- */
-.policies {
-    background: #f0f0f0;
-    color: #333;
-    font-size: 14px;
-    padding: 20px;
-    border-radius: 10px;
-    line-height: 1.6;
-}
-
-.policies h3 {
-    color: #0078D7;
-}
-
-/* --- Footer --- */
-footer {
-    background: #0078D7;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    font-weight: bold;
-}
-
-/* --- Responsive --- */
-@media (max-width: 600px) {
-    .features {
-        grid-template-columns: 1fr;
-    }
-}
+@media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -200,7 +106,7 @@ footer {
     <div class="payment-box">
         <p><strong>Send to:</strong> 09157406673</p>
         <p><strong>Amount:</strong> ₱199</p>
-        <p>After payment, fill the form below to see your entry appear.</p>
+        <p>After payment, fill the form below to submit your order.</p>
     </div>
 </div>
 
@@ -212,17 +118,6 @@ footer {
         <input type="text" placeholder="Payment Reference" required>
         <button class="btn">Submit Order</button>
     </form>
-
-    <!-- Client-visible Buyer Table -->
-    <div class="buyer-table">
-        <h4>Your Submitted Orders</h4>
-        <table>
-            <thead>
-                <tr><th>Name</th><th>Email</th><th>Reference</th></tr>
-            </thead>
-            <tbody id="buyer-orders"></tbody>
-        </table>
-    </div>
 </div>
 
 <div class="section">
@@ -232,11 +127,7 @@ footer {
         <h4>All Submitted Orders</h4>
         <table>
             <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Reference</th>
-                </tr>
+                <tr><th>Name</th><th>Email</th><th>Reference</th></tr>
             </thead>
             <tbody id="checkout-orders"></tbody>
         </table>
@@ -260,18 +151,14 @@ footer {
 
 </div>
 
-<footer>
-    JP Mini-Store
-</footer>
+<footer>JP Mini-Store</footer>
 
 <script>
 // Orders stored in localStorage
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
 // Save orders
-function saveOrders() {
-    localStorage.setItem("orders", JSON.stringify(orders));
-}
+function saveOrders() { localStorage.setItem("orders", JSON.stringify(orders)); }
 
 // Render Admin Dashboard
 function renderAdminDashboard() {
@@ -287,19 +174,6 @@ function renderAdminDashboard() {
         `;
     });
     document.querySelector(".checkout-dashboard").style.display = orders.length ? "block" : "none";
-}
-
-// Render Buyer Table (last submitted orders)
-function renderBuyerTable(order) {
-    const table = document.getElementById("buyer-orders");
-    table.innerHTML = `
-        <tr>
-            <td>${order.name}</td>
-            <td>${order.email}</td>
-            <td>${order.ref}</td>
-        </tr>
-    `;
-    document.querySelector(".buyer-table").style.display = "block";
 }
 
 // Update order
@@ -319,8 +193,7 @@ function submitOrder(e) {
     };
     orders.push(order);
     saveOrders();
-    renderAdminDashboard();
-    renderBuyerTable(order);
+    renderAdminDashboard(); // only admin sees all orders
     document.getElementById("confirmation-msg").innerText = "Order submitted successfully!";
     e.target.reset();
 }
@@ -331,16 +204,12 @@ function clearOrders() {
         orders = [];
         saveOrders();
         renderAdminDashboard();
-        document.getElementById("buyer-orders").innerHTML = "";
-        document.querySelector(".buyer-table").style.display = "none";
         document.getElementById("confirmation-msg").innerText = "All orders cleared.";
     }
 }
 
 // Scroll to checkout
-function scrollToCheckout() {
-    document.querySelector(".section form").scrollIntoView({ behavior: "smooth" });
-}
+function scrollToCheckout() { document.querySelector(".section form").scrollIntoView({ behavior: "smooth" }); }
 
 // Initial render
 renderAdminDashboard();
