@@ -42,6 +42,7 @@ footer { background: #0078D7; color: white; text-align: center; padding: 15px; f
 </header>
 
 <div id="store">
+
 <div class="hero">
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo">
     <h3>Get the full Microsoft Office suite for your PC</h3>
@@ -66,7 +67,7 @@ footer { background: #0078D7; color: white; text-align: center; padding: 15px; f
 <div class="section">
     <h3>Payment Instructions</h3>
     <div class="payment-box">
-        <p><strong>Send to:</strong> 09157406673</p>
+        <p><strong>Send to:</strong> <em>Demo Payment Number</em></p>
         <p><strong>Amount:</strong> ₱199</p>
         <p>After payment, fill the form below to simulate order submission.</p>
     </div>
@@ -82,8 +83,27 @@ footer { background: #0078D7; color: white; text-align: center; padding: 15px; f
     </form>
 </div>
 
+<div class="section policies">
+    <h3>Instructions & Policies</h3>
+    <ul>
+        <li>Keep your email updated to see simulated confirmations.</li>
+        <li>Fill up the checkout form.</li>
+        <li><strong style="color:#0078D7;">Contact on Facebook after checkout.</strong></li>
+        <li>If you encounter any issues or errors, please contact us on Facebook.</li>
+    </ul>
+</div>
+
+<!-- Admin Login Section -->
 <div class="section">
-    <h3>Checkout Dashboard</h3>
+    <h3>Admin Dashboard Login</h3>
+    <input type="password" id="admin-password" placeholder="Enter admin password">
+    <button class="btn" onclick="adminLogin()">Login as Admin</button>
+    <p id="admin-msg" style="color:red;margin-top:10px;"></p>
+</div>
+
+<!-- Admin Dashboard -->
+<div class="section" id="admin-dashboard" style="display:none;">
+    <h3>Admin Checkout Dashboard</h3>
     <button class="btn" style="background:#dc3545;margin-bottom:10px;" onclick="clearOrders()">Clear All Orders</button>
     <div class="checkout-dashboard">
         <table>
@@ -95,25 +115,9 @@ footer { background: #0078D7; color: white; text-align: center; padding: 15px; f
                     <th>IP Address</th>
                 </tr>
             </thead>
-            <tbody id="checkout-orders"></tbody>
+            <tbody id="admin-orders"></tbody>
         </table>
     </div>
-</div>
-
-<div class="section">
-    <h3>Contact</h3>
-    <p>Facebook: <a href="https://www.facebook.com/share/1CX8kZ4VGk/" target="_blank">https://www.facebook.com/share/1CX8kZ4VGk/</a></p>
-</div>
-
-<div class="section policies">
-    <h3>Instructions & Policies</h3>
-    <ul>
-        <li>Keep your email updated to see simulated confirmations.</li>
-        <li>Fill up the checkout form.</li>
-        <li><strong style="color:#0078D7;">Contact me in Facebook after the checkout form.</strong></li>
-        <li>If you encounter any issues or errors, please contact us on Facebook.</li>
-    </ul>
-</div>
 </div>
 
 <footer>JP Mini-Store</footer>
@@ -138,32 +142,9 @@ function saveOrders() {
     localStorage.setItem("orders", JSON.stringify(orders));
 }
 
-// Render Checkout Dashboard
-async function renderCheckoutDashboard() {
-    const table = document.getElementById("checkout-orders");
-    table.innerHTML = "";
-    const visitorIP = await getUserIP();
-
-    orders.forEach((o, index) => {
-        if (visitorIP === "111.90.237.149" || o.ip === visitorIP) {
-            table.innerHTML += `
-                <tr>
-                    <td contenteditable="true" onblur="updateOrder(${index}, 'name', this.innerText)">${o.name}</td>
-                    <td contenteditable="true" onblur="updateOrder(${index}, 'email', this.innerText)">${o.email}</td>
-                    <td contenteditable="true" onblur="updateOrder(${index}, 'ref', this.innerText)">${o.ref}</td>
-                    <td>${o.ip}</td>
-                </tr>
-            `;
-        }
-    });
-
-    document.querySelector(".checkout-dashboard").style.display = table.innerHTML ? "block" : "none";
-}
-
-// Update order
-function updateOrder(index, field, value) {
-    orders[index][field] = value.trim();
-    saveOrders();
+// Scroll to checkout
+function scrollToCheckout() {
+    document.querySelector(".section form").scrollIntoView({ behavior: "smooth" });
 }
 
 // Submit order
@@ -181,7 +162,6 @@ async function submitOrder(e) {
 
     orders.push(order);
     saveOrders();
-    renderCheckoutDashboard();
     document.getElementById("confirmation-msg").innerText = "Order submitted successfully!";
     e.target.reset();
 }
@@ -191,18 +171,53 @@ function clearOrders() {
     if(confirm("Are you sure you want to clear all orders?")) {
         orders = [];
         saveOrders();
-        renderCheckoutDashboard();
-        document.getElementById("confirmation-msg").innerText = "All orders cleared.";
+        renderAdminDashboard();
+        document.getElementById("admin-msg").innerText = "All orders cleared.";
     }
 }
 
-// Scroll to checkout
-function scrollToCheckout() {
-    document.querySelector(".section form").scrollIntoView({ behavior: "smooth" });
+// Update order (inline editable)
+function updateOrder(index, field, value) {
+    orders[index][field] = value.trim();
+    saveOrders();
 }
 
-// Initial render
-renderCheckoutDashboard();
+// Admin password
+const ADMIN_PASSWORD = "199809";
+
+// Admin login function
+function adminLogin() {
+    const input = document.getElementById("admin-password").value;
+    const msg = document.getElementById("admin-msg");
+    
+    if (input === ADMIN_PASSWORD) {
+        document.getElementById("admin-dashboard").style.display = "block";
+        msg.style.color = "green";
+        msg.innerText = "Access granted!";
+        renderAdminDashboard();
+    } else {
+        msg.style.color = "red";
+        msg.innerText = "Incorrect password!";
+        document.getElementById("admin-dashboard").style.display = "none";
+    }
+}
+
+// Render admin dashboard
+function renderAdminDashboard() {
+    const table = document.getElementById("admin-orders");
+    table.innerHTML = "";
+    orders.forEach((o, index) => {
+        table.innerHTML += `
+            <tr>
+                <td contenteditable="true" onblur="updateOrder(${index}, 'name', this.innerText)">${o.name}</td>
+                <td contenteditable="true" onblur="updateOrder(${index}, 'email', this.innerText)">${o.email}</td>
+                <td contenteditable="true" onblur="updateOrder(${index}, 'ref', this.innerText)">${o.ref}</td>
+                <td>${o.ip}</td>
+            </tr>
+        `;
+    });
+    document.querySelector("#admin-dashboard .checkout-dashboard").style.display = orders.length ? "block" : "none";
+}
 </script>
 
 </body>
