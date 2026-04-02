@@ -26,9 +26,6 @@ header { background: #0078D7; color: white; text-align: center; padding: 20px; b
 .feature { background: #f0f4f8; padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; }
 input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
 .payment-box { background: #e3f2fd; padding: 15px; border-radius: 5px; margin-top: 10px; }
-.checkout-dashboard table { width: 100%; border-collapse: collapse; }
-.checkout-dashboard th, .checkout-dashboard td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-.checkout-dashboard td { cursor: text; }
 .policies { background: #f0f0f0; color: #333; font-size: 14px; padding: 20px; border-radius: 10px; line-height: 1.6; }
 .policies h3 { color: #0078D7; }
 footer { background: #0078D7; color: white; text-align: center; padding: 15px; font-weight: bold; }
@@ -93,31 +90,6 @@ footer { background: #0078D7; color: white; text-align: center; padding: 15px; f
     </ul>
 </div>
 
-<!-- Admin Login Section -->
-<div class="section">
-    <h3>Admin Dashboard Login</h3>
-    <input type="password" id="admin-password" placeholder="Enter admin password">
-    <button class="btn" onclick="adminLogin()">Login as Admin</button>
-    <p id="admin-msg" style="color:red;margin-top:10px;"></p>
-</div>
-
-<!-- Admin Dashboard -->
-<div class="section" id="admin-dashboard" style="display:none;">
-    <h3>Admin Checkout Dashboard</h3>
-    <button class="btn" style="background:#dc3545;margin-bottom:10px;" onclick="clearOrders()">Clear All Orders</button>
-    <div class="checkout-dashboard">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Reference</th>
-                    <th>IP Address</th>
-                </tr>
-            </thead>
-            <tbody id="admin-orders"></tbody>
-        </table>
-    </div>
 </div>
 
 <footer>JP Mini-Store</footer>
@@ -135,11 +107,6 @@ async function getUserIP() {
     } catch {
         return "Unknown";
     }
-}
-
-// Save orders
-function saveOrders() {
-    localStorage.setItem("orders", JSON.stringify(orders));
 }
 
 // Scroll to checkout
@@ -161,62 +128,9 @@ async function submitOrder(e) {
     };
 
     orders.push(order);
-    saveOrders();
+    localStorage.setItem("orders", JSON.stringify(orders));
     document.getElementById("confirmation-msg").innerText = "Order submitted successfully!";
     e.target.reset();
-}
-
-// Clear orders
-function clearOrders() {
-    if(confirm("Are you sure you want to clear all orders?")) {
-        orders = [];
-        saveOrders();
-        renderAdminDashboard();
-        document.getElementById("admin-msg").innerText = "All orders cleared.";
-    }
-}
-
-// Update order (inline editable)
-function updateOrder(index, field, value) {
-    orders[index][field] = value.trim();
-    saveOrders();
-}
-
-// Admin password
-const ADMIN_PASSWORD = "199809";
-
-// Admin login function
-function adminLogin() {
-    const input = document.getElementById("admin-password").value;
-    const msg = document.getElementById("admin-msg");
-    
-    if (input === ADMIN_PASSWORD) {
-        document.getElementById("admin-dashboard").style.display = "block";
-        msg.style.color = "green";
-        msg.innerText = "Access granted!";
-        renderAdminDashboard();
-    } else {
-        msg.style.color = "red";
-        msg.innerText = "Incorrect password!";
-        document.getElementById("admin-dashboard").style.display = "none";
-    }
-}
-
-// Render admin dashboard
-function renderAdminDashboard() {
-    const table = document.getElementById("admin-orders");
-    table.innerHTML = "";
-    orders.forEach((o, index) => {
-        table.innerHTML += `
-            <tr>
-                <td contenteditable="true" onblur="updateOrder(${index}, 'name', this.innerText)">${o.name}</td>
-                <td contenteditable="true" onblur="updateOrder(${index}, 'email', this.innerText)">${o.email}</td>
-                <td contenteditable="true" onblur="updateOrder(${index}, 'ref', this.innerText)">${o.ref}</td>
-                <td>${o.ip}</td>
-            </tr>
-        `;
-    });
-    document.querySelector("#admin-dashboard .checkout-dashboard").style.display = orders.length ? "block" : "none";
 }
 </script>
 
