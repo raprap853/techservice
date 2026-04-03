@@ -1,11 +1,10 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tech Services: Microsoft Office & Data Recovery</title>
 <style>
-/* --- General Body Styles --- */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -17,8 +16,6 @@ body {
     align-items: center;
     scroll-behavior: smooth;
 }
-
-/* --- Header --- */
 header {
     background: #0a3d62;
     color: white;
@@ -26,8 +23,6 @@ header {
     padding: 20px;
     width: 100%;
 }
-
-/* --- Navigation --- */
 nav {
     background: #07407a;
     padding: 10px 20px;
@@ -48,7 +43,6 @@ nav a {
 }
 nav a:hover { text-decoration: underline; }
 
-/* --- Centered Container --- */
 .center-container {
     display: flex;
     flex-direction: column;
@@ -60,7 +54,6 @@ nav a:hover { text-decoration: underline; }
     gap: 25px;
 }
 
-/* --- Sections --- */
 section {
     padding: 40px 20px;
     width: 100%;
@@ -69,7 +62,6 @@ section {
     align-items: center;
 }
 
-/* --- Service Cards --- */
 .services {
     display: flex;
     flex-wrap: wrap;
@@ -86,8 +78,7 @@ article.card {
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1),
-                box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 0.4s, box-shadow 0.4s;
     min-width: 200px;
     max-width: 300px;
 }
@@ -96,7 +87,6 @@ article.card:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.25);
 }
 
-/* --- Hero Section --- */
 .hero {
     display: inline-block;
     padding: 40px 30px;
@@ -106,7 +96,7 @@ article.card:hover {
     text-align: center;
     margin: 20px 0;
     max-width: fit-content;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 .hero:hover {
     transform: translateY(-5px);
@@ -122,14 +112,13 @@ article.card:hover {
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s;
+    transition: background 0.3s, transform 0.2s;
     text-decoration: none;
     display: inline-block;
     margin-top: 10px;
 }
 .btn:hover { background: #07407a; transform: scale(1.02); }
 
-/* --- Included Apps Grid Centered --- */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -151,56 +140,31 @@ article.card:hover {
     max-width: 150px;
     opacity: 0;
     transform: scale(0.9);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s, transform 0.5s;
 }
 .features li.show {
     opacity: 1;
     transform: scale(1);
 }
 
-/* --- Payment & Policies Centered --- */
-.payment-box {
-    background: #e3f2fd;
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 10px;
+/* --- Payment & Policies Centered with Shadow & Hover --- */
+.payment-box, .policies {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px auto;
     width: fit-content;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-.payment-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-}
-
-.policies {
-    background: #f0f0f0;
-    color: #333;
-    font-size: 14px;
-    padding: 20px;
-    border-radius: 10px;
-    line-height: 1.6;
-    width: fit-content;
-    text-align: center; /* CENTER text */
-    margin: 10px auto;  /* CENTER the box */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.policies:hover {
+.payment-box:hover, .policies:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
-.policies ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.policies li {
-    margin-bottom: 8px;
-}
+.policies ul, .payment-box ul { list-style: none; padding: 0; margin: 0; }
+.policies li, .payment-box li { margin-bottom: 8px; }
 
-/* --- Footer --- */
 footer {
     background: #0a3d62;
     color: white;
@@ -210,7 +174,6 @@ footer {
     width: 100%;
 }
 
-/* --- Responsive --- */
 @media (max-width: 600px) {
     .services, .features { flex-direction: column; grid-template-columns: 1fr; align-items: center; }
     article.card, .hero, .payment-box, .policies { width: 90%; display: block; }
@@ -233,7 +196,6 @@ footer {
 <section id="office">
   <div class="center-container">
     <h2>Microsoft Office & Windows Support</h2>
-
     <div class="services">
       <article class="card"><h3>Windows Activation Assistance</h3><p>Step-by-step help to activate Windows on your PC or laptop.</p></article>
       <article class="card"><h3>Troubleshooting</h3><p>Fix activation errors and system issues for Windows and Office.</p></article>
@@ -295,7 +257,6 @@ JP Mini-Store © 2026
 </footer>
 
 <script>
-// --- Staggered fade-in for features ---
 function animateFeaturesStagger() {
     const features = document.querySelectorAll('.features li');
     features.forEach((feature, index) => {
@@ -308,7 +269,6 @@ function animateFeaturesStagger() {
 window.addEventListener('scroll', animateFeaturesStagger);
 window.addEventListener('load', animateFeaturesStagger);
 
-// --- Smooth scrolling for nav links ---
 document.querySelectorAll('a.nav-link').forEach(link => {
     link.addEventListener('click', function(e){
         e.preventDefault();
