@@ -121,7 +121,7 @@ article.card:hover {
 
 .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 15px;
     margin-top: 15px;
     list-style: none;
@@ -136,8 +136,7 @@ article.card:hover {
     border-radius: 8px;
     text-align: center;
     font-weight: 600;
-    min-width: 80px;
-    max-width: 150px;
+    width: 150px;  /* uniform longer boxes */
     opacity: 0;
     transform: scale(0.9);
     transition: opacity 0.5s, transform 0.5s;
