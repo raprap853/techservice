@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     align-items: center;
-    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    scroll-behavior: smooth;
 }
 
 /* --- Header --- */
@@ -36,15 +36,15 @@ nav {
     z-index: 1000;
     width: 100%;
     display: flex;
-    justify-content: center; /* Center links horizontally */
-    gap: 40px; /* Space between links */
-    flex-wrap: wrap; /* Wrap links on small screens */
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    white-space: nowrap; /* Prevent breaking text */
+    white-space: nowrap;
 }
 nav a:hover { text-decoration: underline; }
 
@@ -129,7 +129,7 @@ article.card:hover {
 }
 .btn:hover { background: #07407a; transform: scale(1.02); }
 
-/* --- Features Grid with Stagger Animation --- */
+/* --- Included Apps Grid Centered --- */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -137,7 +137,8 @@ article.card:hover {
     margin-top: 15px;
     list-style: none;
     padding: 0;
-    width: 100%;
+    width: auto;
+    justify-content: center;
     justify-items: center;
 }
 .features li {
@@ -164,6 +165,7 @@ article.card:hover {
     border-radius: 5px;
     margin-top: 10px;
     width: fit-content;
+    text-align: center; /* <-- CENTER the content */
 }
 .policies {
     background: #f0f0f0;
