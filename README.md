@@ -119,6 +119,7 @@ article.card:hover {
 }
 .btn:hover { background: #07407a; transform: scale(1.02); }
 
+/* Included Apps */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -146,7 +147,13 @@ article.card:hover {
     transform: scale(1);
 }
 
-/* --- Payment & Policies Centered with Shadow & Hover --- */
+/* Section headings centered */
+.section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Payment & Policies */
 .payment-box, .policies {
     background: white;
     padding: 20px;
