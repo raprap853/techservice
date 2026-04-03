@@ -158,15 +158,22 @@ article.card:hover {
     transform: scale(1);
 }
 
-/* --- Payment & Policies --- */
+/* --- Payment & Policies Centered --- */
 .payment-box {
     background: #e3f2fd;
     padding: 15px;
     border-radius: 5px;
     margin-top: 10px;
     width: fit-content;
-    text-align: center; /* <-- CENTER the content */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.payment-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
 .policies {
     background: #f0f0f0;
     color: #333;
@@ -175,6 +182,22 @@ article.card:hover {
     border-radius: 10px;
     line-height: 1.6;
     width: fit-content;
+    text-align: center; /* CENTER text */
+    margin: 10px auto;  /* CENTER the box */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.policies:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.policies ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.policies li {
+    margin-bottom: 8px;
 }
 
 /* --- Footer --- */
