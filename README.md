@@ -4,18 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tech & Computer Services</title>
+<meta name="description" content="JP Mini-Store provides Microsoft Office, Windows activation, computer service, and data recovery solutions at affordable prices.">
 <style>
+:root {
+    --primary-color: #0a3d62;
+    --hover-color: #07407a;
+    --green: #28a745;
+    --bg-color: #f4f6f9;
+    --transition: 0.3s;
+    --shadow-light: rgba(0,0,0,0.1);
+    --shadow-dark: rgba(0,0,0,0.2);
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background: #f4f6f9;
+    background: var(--bg-color);
     color: #333;
     scroll-behavior: smooth;
 }
 
 /* Header */
 header {
-    background: #0a3d62;
+    background: var(--primary-color);
     color: white;
     text-align: center;
     padding: 20px;
@@ -25,12 +36,13 @@ header p { margin: 5px 0 0; }
 
 /* Navigation */
 nav {
-    background: #07407a;
+    background: var(--hover-color);
     padding: 10px 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
     text-align: center;
+    box-shadow: 0 2px 6px var(--shadow-light);
 }
 nav a {
     color: white;
@@ -47,26 +59,25 @@ nav a:hover { text-decoration: underline; }
 }
 .section h2 { margin-bottom: 25px; }
 
-/* Services Cards */
+/* Services Grid */
 .services {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    justify-content: center;
+    justify-items: center;
 }
 .card {
     background: white;
     padding: 20px;
-    width: 250px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px var(--shadow-dark);
 }
-.card h3 { color: #0a3d62; }
+.card h3 { color: var(--primary-color); }
 
 /* Hero Section */
 .hero {
@@ -74,20 +85,20 @@ nav a:hover { text-decoration: underline; }
     padding: 40px 30px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px var(--shadow-light);
     text-align: center;
     margin: 20px auto;
     max-width: 400px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 .hero:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px var(--shadow-dark);
 }
 .hero img { width: 100px; margin-bottom: 15px; }
-.price { font-size: 28px; color: #28a745; margin: 10px 0; font-weight: bold; }
+.price { font-size: 28px; color: var(--green); margin: 10px 0; font-weight: bold; }
 .btn {
-    background: #0a3d62;
+    background: var(--primary-color);
     color: white;
     padding: 12px 18px;
     border: none;
@@ -97,7 +108,7 @@ nav a:hover { text-decoration: underline; }
     text-decoration: none;
     display: inline-block;
 }
-.btn:hover { background: #07407a; transform: scale(1.02); }
+.btn:hover { background: var(--hover-color); transform: scale(1.02); }
 
 /* Features Grid */
 .features {
@@ -131,7 +142,7 @@ nav a:hover { text-decoration: underline; }
     border-radius: 10px;
     margin: 20px auto;
     width: fit-content;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px var(--shadow-light);
     text-align: center;
 }
 .payment-box ul, .policies ul { list-style: none; padding: 0; margin: 0; }
@@ -139,7 +150,7 @@ nav a:hover { text-decoration: underline; }
 
 /* Footer */
 footer {
-    background: #0a3d62;
+    background: var(--primary-color);
     color: white;
     text-align: center;
     padding: 15px;
@@ -148,7 +159,7 @@ footer {
 
 /* Responsive */
 @media (max-width: 800px) {
-    .services { flex-direction: column; align-items: center; }
+    .services { grid-template-columns: 1fr; }
     .card, .hero, .payment-box, .policies { width: 90%; }
 }
 </style>
@@ -162,7 +173,7 @@ footer {
 
 <nav>
 <a href="#office">Office & Windows</a>
-<a href="#computer-services">Computer Services</a>
+<a href="#computer-services">Computer Service</a>
 <a href="#data-recovery">Data Recovery</a>
 </nav>
 
@@ -185,13 +196,13 @@ footer {
 </div>
 
 <div class="hero">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft logo">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft logo" loading="lazy">
 <h3>Boost Productivity: Microsoft Office, Windows & IDM</h3>
 <div class="price">₱199</div>
-<a class="btn" href="https://www.facebook.com/share/1CX8kZ4VGk/" target="_blank" rel="noopener">Buy Now via Facebook</a>
+<a class="btn" href="https://www.facebook.com/share/1CX8kZ4VGk/" target="_blank" rel="noopener noreferrer">Buy Now via Facebook</a>
 </div>
 
-<ul class="features">
+<ul class="features" role="list">
     <li>Word</li>
     <li>Excel</li>
     <li>PowerPoint</li>
@@ -218,9 +229,9 @@ footer {
 </div>
 </section>
 
-<!-- Computer Services Section -->
+<!-- Computer Service Section -->
 <section class="section" id="computer-services">
-<h2>Computer Services</h2>
+<h2>Computer Service</h2>
 <div class="services">
     <div class="card">
         <h3>Hardware Installation</h3>
@@ -269,27 +280,25 @@ JP Mini-Store © 2026
 </footer>
 
 <script>
-// Smooth scroll for nav links
+// Smooth scroll
 document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(e){
+    link.addEventListener('click', e => {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href'))
+        document.querySelector(link.getAttribute('href'))
             .scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
 
 // Features animation
-function animateFeaturesStagger() {
-    const features = document.querySelectorAll('.features li');
-    features.forEach((feature, index) => {
-        const rect = feature.getBoundingClientRect();
-        if(rect.top < window.innerHeight && rect.bottom >= 0) {
-            setTimeout(() => feature.classList.add('show'), index * 150);
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
         }
     });
-}
-window.addEventListener('scroll', animateFeaturesStagger);
-window.addEventListener('load', animateFeaturesStagger);
+}, { threshold: 0.5 });
+document.querySelectorAll('.features li').forEach(li => observer.observe(li));
 </script>
 
 </body>
